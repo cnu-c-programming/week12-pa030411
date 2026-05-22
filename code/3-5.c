@@ -1,9 +1,12 @@
 #include <stdio.h>
 
 int main(int argc, const char* argv[]) {
-    const char* filename = argc > 1 ? argv[1] : "code/numbers.txt";
+    const char* filename = argc > 1 ? argv[1] : "numbers.txt";
 
     FILE* fp = fopen(filename, "r");
+    if (fp == NULL && argc == 1) {
+        fp = fopen("code/numbers.txt", "r");
+    }
     if (fp == NULL) {
         return 0;
     }
