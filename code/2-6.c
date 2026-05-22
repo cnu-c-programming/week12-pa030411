@@ -2,14 +2,21 @@
 #include <string.h>
 
 int main(int argc, const char* argv[]) {
-    if (argc < 3)
+    const char* filename = argc > 1 ? argv[1] : "code/myfile.txt";
+    const char* target_str = argc > 2 ? argv[2] : "out";
+    char line[512];
+
+    FILE* fp = fopen(filename, "r");
+    if (fp == NULL) {
         return 0;
+    }
 
-    FILE* fp = fopen(argv[1], "r");
-    const char* target_str = argv[2];
-
-
+    while (fgets(line, sizeof(line), fp) != NULL) {
+        if (strstr(line, target_str) != NULL) {
+            printf("%s", line);
+        }
+    }
     
     fclose(fp);
+    return 0;
 }
-

@@ -5,7 +5,12 @@ int main(int argc, const char* argv[]) {
         return 0;
     
     FILE* fp = fopen(argv[1], "r");
+    if (fp == NULL) {
+        perror("file dose not exists");
+        return 0;
+    }
 
+    fclose(fp);
 
     return 0;
 }
